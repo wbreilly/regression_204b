@@ -106,7 +106,7 @@ abline(lm(y~x, data = dm), col = 'green')
 
 #edit path to load data
 
-d <- read.csv("lab06dat1.csv")
+d <- read.csv("lab06dat.csv")
 head(d)
 summary(d)
 
