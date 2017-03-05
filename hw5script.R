@@ -75,7 +75,7 @@ c = coef(nlm6)
 curve(c[1] + c[2]*x + c[3]*(x^3), add = TRUE, lty = 1, col = "red")
 
 # try log
-nlm7 = nls(y3 ~ a + logb(x, b= 1.25 ), start = list(a = 0), data = d) #think of a as your "intercept" and b as your "slope"
+nlm7 = nls(y3 ~ a + logb(x1, b= 1.25 ), start = list(a = 0), data = d) #think of a as your "intercept" and b as your "slope"
 summary(nlm7)
 c = coef(nlm7)
 curve(c[1] + logb(x, b = 1.25), add = TRUE, lty = 1, col = "red")
