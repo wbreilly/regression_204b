@@ -26,6 +26,10 @@ m1 = lme(logCD4 ~ Week + Treatment + Gender , random = ~ 1  | ID, method = "REML
 summary(m1)
 
 #3
-# miced effects model with random int and random slope for week
+# mixed effects model with random int and random slope for week
 m2 = lme(logCD4 ~ Treatment + Gender , random = ~ 1 + Week | ID, method = "REML", data = d) #random intercept only
 summary(m2)
+
+#4
+#compute AIC BIC and LRT
+anova(m1,m2)
