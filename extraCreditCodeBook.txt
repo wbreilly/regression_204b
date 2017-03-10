@@ -1,0 +1,62 @@
+ [1] "ï..PS"
+#subject ID
+
+ [2] "PD_15"                              
+ [3] "PD_30"                               "PD_45"                              
+ [5] "PD_60"                               "PD_75"                              
+ [7] "PD_90"                               "PD_105"                             
+ [9] "PD_120"                              "PD_135"                             
+[11] "PD_150"                              "PD_150plus"     
+
+#PD is the estimate of the proportion of the population within a certain wealth bracket
+#PD15 is less than or equal to $15,000
+#PD30 = $15,000-30,000
+#...
+#PD150plus is greater than $150,000
+                    
+[13] "fairness"           
+#"To what extent do you feel that household incomes are fairly – unfairly distributed across the U.S. population?”
+#1 = extremely unfair, 9 = extremely fair
+               
+[14] "satisfaction"
+#"How satisfied-dissatisfied are you with the way in whichhousehold incomesare distributed across the US population?"
+#1 = extremely unsatisfied, 9 = extremely satisfied                       
+
+[15] "SC_15"                               "SC_30"                              
+[17] "SC_45"                               "SC_60"                              
+[19] "SC_75"                               "SC_90"                              
+[21] "SC_105"                              "SC_120"                             
+[23] "SC_135"                              "SC_150"                             
+[25] "SC_150plus"
+
+#SC is the estimate of the proportion of the participant's social contacts within a certain wealth bracket
+#SC15 is less than or equal to $15,000
+#SC30 = $15,000-30,000
+#...
+#SC150plus is greater than $150,000
+
+[26] "redist1"                            
+[27] "redist2"                             
+[28] "redist3"                            
+[29] "redist4"
+
+#redist measures the extent to which the participant endorsed wealth redistribution
+#1 = strongly disagree, 6 = strongly agree
+
+##the best way to analyze this would be to create a composite score. Use the psych package in R for functions that let you measure the extent that
+##these four items measure the same construct or "hang together" (i.e., alpha() for Cronbach's alpha and ICC() for interclass correlation).                            
+ 
+[30] "Household_Income"                   
+[31] "Political_Preference"
+#1 = extremely liberal; 9 = extremely conservative                
+[32] "age"                                
+[33] "gender"
+#men = 1; women = 2
+[34] "Population_Inequality_Gini_Index"
+#extent of income inequality in the state in which the participant resides
+[35] "Population_Mean_Income"
+#average income in the state in which the participant resides
+[36] "Social_Circle_Inequality_Gini_Index"
+#extent of income inequality in the participant's social circle
+[37] "Social_Circle_Mean_Income"
+#average income in participant's social circle
