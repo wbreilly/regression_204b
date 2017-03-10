@@ -17,6 +17,8 @@ dlong = reshape(d, idvar = "d", varying = c(list(names(d)[2:12]), list(names(d)[
 #reorder by subject number
 dlong = dlong[order(dlong$id),]
 
+############ include random effect of subject in XC analyses ###############
+
 #spegetti plot of the perceived distribution of wealth in US
 require(ggplot2)
 p <- ggplot(data = dlong, aes(x = PD, y = pdScore, group = id))
