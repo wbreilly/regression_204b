@@ -52,14 +52,27 @@ summary(m1)
 # first conclusion, the less liberal peopple are, the more likely they are to think that the system is fair
 
 # now build a giant model to id other pertinent vars
-# start with interaction model
-m.int = lm(d$fairness ~ d$Political_Preference * d$satisfaction * d$Household_Income * d$age * d$gender * d$Population_Inequality_Gini_Index *
-            d$Population_Mean_Income * d$Social_Circle_Inequality_Gini_Index * d$Social_Circle_Mean_Income * d$pdScore * d$scScore)
+m1 = lm(d$fairness ~ d$Political_Preference + d$satisfaction + d$Household_Income + d$age + d$gender + d$Population_Inequality_Gini_Index +
+            d$Population_Mean_Income + d$Social_Circle_Inequality_Gini_Index + d$Social_Circle_Mean_Income + d$pdScore + d$scScore)
+summary(m1)
+
+#build next model with only sig predictors from previous model
+m2 = lm(d$fairness ~ d$Political_Preference + d$satisfaction + d$gender + d$Population_Inequality_Gini_Index
+      + d$Population_Mean_Income + d$Social_Circle_Inequality_Gini_Index)
+summary(m2)
+
+#try with interactions
+m.int = lm(d$fairness ~ d$Political_Preference * d$satisfaction * d$gender * d$Population_Inequality_Gini_Index
+        * d$Population_Mean_Income * d$Social_Circle_Inequality_Gini_Index)
 summary(m.int)
 
+AIC(m2);AIC(m.int);BIC(m2);BIC(m.int)
+anova(m2,m.int)
+
+# interaction model does significantly better. Now try stepwise backward
+back.int = step(m.int, direction = c("backward"))
 #backwards model
-backwards.int = step(m.int, direction = c("backward"))
-summary
+summary(back.int)
 
 # interaction model 
 m4 = lm(y~ m1 * m2 * p1 * p2 * n1 * n2,data = d)
