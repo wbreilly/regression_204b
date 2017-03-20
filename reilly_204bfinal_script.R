@@ -123,3 +123,19 @@ legend("bottomleft",bty = "n", lty = c(1,1,1),col = c("blue","red","green"),
 #5a
 d <- read.table("~/walter/regression_204b/fat.txt", quote="\"", comment.char="")
 colnames(d) =  c("id","age","menarche.a","menarche.t","pfat")
+
+# get random IDs
+# how many unique ps?
+# will try with all p's first and see what it looks like
+# ok too many lines, get a random samp
+library(tidyverse)
+unique.ps = unique(d$id) 
+rand.samp = sample.int(162, size = 50, replace = FALSE)
+# create new df with rand IDS
+dspag = d %>% filter(id %in% rand.samp)
+
+require(ggplot2)
+#spag plot
+p <- ggplot(data = dspag, aes(x = age, y = pfat, group = id))
+p  + geom_line() + ggtitle("Age and Body Fat %") + labs(x = "Current Age", y = "Body Fat Percentage")
+
