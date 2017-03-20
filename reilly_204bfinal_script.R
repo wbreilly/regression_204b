@@ -139,3 +139,20 @@ require(ggplot2)
 p <- ggplot(data = dspag, aes(x = age, y = pfat, group = id))
 p  + geom_line() + ggtitle("Age and Body Fat %") + labs(x = "Current Age", y = "Body Fat Percentage")
 
+#5b
+library(nlme)
+library(psych)
+
+# mixed effects mod with random intercept for ID
+me1 = lme(pfat ~ menarche.a + age, random = ~ 1  | id, method = "REML", data = d) #random intercept only
+summary(me1)
+
+#5c
+# add random slope for current age
+me2 = lme(pfat ~ menarche.a + age, random = ~ 1 + age | id, method = "REML", data = d) #random intercept only
+summary(me2)
+
+#5d
+AIC(me1);BIC(me1)
+AIC(me2);BIC(me2)
+anova(me1,me2)
