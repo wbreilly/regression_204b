@@ -119,3 +119,7 @@ lines(d$x1,d$hp2, lwd = 3, col = "green")
 
 legend("bottomleft",bty = "n", lty = c(1,1,1),col = c("blue","red","green"),
        legend = c("-1SD","0SD","1SD"))
+
+#5a
+d <- read.table("~/walter/regression_204b/fat.txt", quote="\"", comment.char="")
+colnames(d) =  c("id","age","menarche.a","menarche.t","pfat")
