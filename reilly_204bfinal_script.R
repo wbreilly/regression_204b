@@ -156,3 +156,42 @@ summary(me2)
 AIC(me1);BIC(me1)
 AIC(me2);BIC(me2)
 anova(me1,me2)
+
+require(tidyverse)
+#6a
+d = read.csv("terrormanagement.csv")
+summary(d)
+mean(d$religious);sd(d$religious)
+mean(d$thinkd);sd(d$thinkd)
+mean(d$religfam);sd(d$religfam)
+
+#6b
+
+glm1 = glm(religious ~ thinkd, family = "binomial", data = d)
+summary(glm1)
+
+glm2 = glm(religious ~ thinkd + religfam, family = "binomial", data = d)
+summary(glm2)
+
+glm3 = glm(religious ~ thinkd * religfam, family = "binomial", data = d)
+summary(glm3)
+
+#6c
+AIC(glm1);BIC(glm1)
+AIC(glm2);BIC(glm2)
+AIC(glm3);BIC(glm3)
+anova(glm2,glm3)
+
+# get p value
+pchisq(14.676, 1, lower.tail = FALSE) 
+
+#5d plot it
+plot(religious ~ thinkd, xlab = "ThinkD", ylab = "Religious", main = "Probability of Religious as Func of Morbid Thoughts", data = d)
+points(religious[religfam == "1"] ~ thinkd[religfam == "1"], pch = 16, col = "dark blue", data = d)
+points(religious[religfam == "0"] ~ thinkd[religfam == "0"], pch = 16, col = "hot pink", data = d)
+c = coef(glm3)
+curve(exp(c[1]*x)/(1-exp(c[1])*x), add = TRUE, lty = 3, col = "hot pink")
+curve(exp(c[1]+c[2]*x+c[3])/(1+exp(c[1]+c[2]*x+c[3])), add = TRUE, lty = 2, col = "dark blue")
+legend(50, 0.8, c("Female", "Male"), lty = c(3,2), col = c("hot pink", "dark blue"))
+
+exp(coef(mod2[1]))/1-exp(coef(mod2[1]))
