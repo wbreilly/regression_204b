@@ -196,4 +196,3 @@ curve(exp(c[1]+c[2]*x)/(1+exp(c[1]+c[2]*x)), add = TRUE, lty = 3, col = "hot pin
 curve(exp(c[1]+c[3]+ x*c[3]+x*c[4])/(1+exp(c[1]+c[3]+ x*c[3]+x*c[4])), add = TRUE, lty = 2, col = "dark blue")
 legend("bottomright", bty = "n", inset = c(0.15, 0.1), c("No ReligFam", "ReligFam"), lty = c(3,2), col = c("hot pink", "dark blue"))
 
-exp(coef(mod2[1]))/1-exp(coef(mod2[1]))
