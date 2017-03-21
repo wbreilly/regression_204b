@@ -123,6 +123,7 @@ legend("bottomleft",bty = "n", lty = c(1,1,1),col = c("blue","red","green"),
 #5a
 d <- read.table("~/walter/regression_204b/fat.txt", quote="\"", comment.char="")
 colnames(d) =  c("id","age","menarche.a","menarche.t","pfat")
+head(d)
 
 # get random IDs
 # how many unique ps?
@@ -146,6 +147,9 @@ library(psych)
 # mixed effects mod with random intercept for ID
 me1 = lme(pfat ~ menarche.a + age, random = ~ 1  | id, method = "REML", data = d) #random intercept only
 summary(me1)
+
+#ICC
+ICC.me1  = (6.049649)^2/((6.049649)^2 + (3.886247)^2)
 
 #5c
 # add random slope for current age
