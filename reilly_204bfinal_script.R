@@ -185,13 +185,15 @@ anova(glm2,glm3)
 # get p value
 pchisq(14.676, 1, lower.tail = FALSE) 
 
+d$religious = as.integer(d$religious)
+
 #5d plot it
 plot(religious ~ thinkd, xlab = "ThinkD", ylab = "Religious", main = "Probability of Religious as Func of Morbid Thoughts", data = d)
 points(religious[religfam == "1"] ~ thinkd[religfam == "1"], pch = 16, col = "dark blue", data = d)
 points(religious[religfam == "0"] ~ thinkd[religfam == "0"], pch = 16, col = "hot pink", data = d)
 c = coef(glm3)
-curve(exp(c[1]*x)/(1-exp(c[1])*x), add = TRUE, lty = 3, col = "hot pink")
-curve(exp(c[1]+c[2]*x+c[3])/(1+exp(c[1]+c[2]*x+c[3])), add = TRUE, lty = 2, col = "dark blue")
-legend(50, 0.8, c("Female", "Male"), lty = c(3,2), col = c("hot pink", "dark blue"))
+curve(exp(c[1]+c[2]*x)/(1+exp(c[1]+c[2]*x)), add = TRUE, lty = 3, col = "hot pink")
+curve(exp(c[1]+c[3]+ x*c[3]+x*c[4])/(1+exp(c[1]+c[3]+ x*c[3]+x*c[4])), add = TRUE, lty = 2, col = "dark blue")
+legend("bottomright", bty = "n", inset = c(0.15, 0.1), c("No ReligFam", "ReligFam"), lty = c(3,2), col = c("hot pink", "dark blue"))
 
 exp(coef(mod2[1]))/1-exp(coef(mod2[1]))
